@@ -3,9 +3,7 @@
 #include "pic.h"
 #include "io.h"
 #include "config.h"
-
-extern printf32(char *fmt, ...);
-
+#include "lib32.h"
 
 #define MOD_PLAIN 0
 #define MOD_SHIFT 1

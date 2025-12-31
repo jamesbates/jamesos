@@ -1,12 +1,7 @@
+#ifndef BOOT_H
+#define BOOT_H
 __asm__ (".code16gcc\n");
 
-#define outb(port,val) __asm__ ("outb %%al, %%dx\n" :: "a" (val), "d" (port))
-static inline char inb(port) {
-    char v;
-
-    __asm__("inb %%dx, %%al\n" : "=a" (v) : "d" (port));
-    return v;
-}
 #define ds(val) __asm__ ("movw %0, %%ax\n\t" \
                          "movw %%ax, %%ds\n" :: "ir" (val) : "%eax")
 #define ds_cs() __asm__ ("movw %%cs, %%ax\n\t" \
@@ -22,10 +17,19 @@ static inline char inb(port) {
 #define REGPARAM3 __attribute((regparm(3)))
 #include <stdint.h>
 
+#define outb(port,val) __asm__ ("outb %%al, %%dx\n" :: "a" (val), "d" (port))
+static inline char inb(uint16_t port) {
+    char v;
+
+    __asm__("inb %%dx, %%al\n" : "=a" (v) : "d" (port));
+    return v;
+}
+
+void init_tty() REGPARAM3;
 void putchar(char c) REGPARAM3;
 void puts(char *s) REGPARAM3;
 void putint(uint8_t val) REGPARAM3;
-void printf(char *f, ...);
+void printf(char *f, uint16_t val1, uint16_t val2) REGPARAM3;
 void print_direct(char *s);
 void read_sectors(uint16_t lba, void *buffer, uint8_t num) REGPARAM3;
 void fd_init() REGPARAM3;
@@ -42,3 +46,4 @@ void init_pic();
 void init_gdt();
 
 extern uint8_t syssectors;
+#endif
