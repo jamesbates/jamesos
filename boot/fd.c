@@ -31,7 +31,8 @@ void REGPARAM3 fd_init() {
 }
 
 void drive_info() {
-    printf("boot drive=0x%x;cyls=%d;heads=%d;sectors=%d\n", drive, cyls, heads, sectors);
+    printf("boot drive=0x%x;cyls=%d;", drive, cyls);
+    printf("heads=%d;sectors=%d\n", heads, sectors);
 }
 
 void REGPARAM3 read_sectors(uint16_t lba, void *buffer, uint8_t num) {

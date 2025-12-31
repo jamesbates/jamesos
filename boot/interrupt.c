@@ -3,8 +3,7 @@
 #include "tty32.h"
 #include "pic.h"
 #include "io.h"
-
-extern void printf32(char *fmt, ...);
+#include "lib32.h"
 
 extern void int_divide_zero();
 extern void int_default_isr();

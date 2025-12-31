@@ -29,7 +29,7 @@ void init_tty() REGPARAM3;
 void putchar(char c) REGPARAM3;
 void puts(char *s) REGPARAM3;
 void putint(uint8_t val) REGPARAM3;
-void printf(char *f, ...);
+void printf(char *f, uint16_t val1, uint16_t val2) REGPARAM3;
 void print_direct(char *s);
 void read_sectors(uint16_t lba, void *buffer, uint8_t num) REGPARAM3;
 void fd_init() REGPARAM3;

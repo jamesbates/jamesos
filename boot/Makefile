@@ -7,8 +7,8 @@ all: hd
 boot.img: boot.elf
 	objcopy -Obinary $< $@
 
-boot.elf: head.o setup.o main.o tty.o fd.o lib.o a20.o mbr.o mem.o gdt.o pm.o pic.o head32.o main32.o tty32.o interrupts.o interrupt.o lib32.o keyb.o pit.o
-	ld -Tboot.ld -o $@ head.o setup.o main.o tty.o fd.o lib.o a20.o mbr.o mem.o gdt.o pm.o pic.o head32.o main32.o tty32.o interrupts.o interrupt.o lib32.o keyb.o pit.o
+boot.elf: head.o setup.o main.o tty.o fd.o lib.o a20.o mbr.o mem.o gdt.o pm.o pic_init.o pic.o head32.o main32.o tty32.o interrupts.o interrupt.o lib32.o keyb.o pit.o
+	ld -Tboot.ld -o $@ head.o setup.o main.o tty.o fd.o lib.o a20.o mbr.o mem.o gdt.o pm.o pic_init.o pic.o head32.o main32.o tty32.o interrupts.o interrupt.o lib32.o keyb.o pit.o
 
 lib32.o: lib.c
 	$(CC) -c -m32 -Os -fno-asynchronous-unwind-tables -fno-exceptions -fno-pie -ffreestanding -fomit-frame-pointer -D__LIB32__ lib.c -o lib32.o

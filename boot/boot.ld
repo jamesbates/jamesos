@@ -6,7 +6,7 @@ SECTIONS {
 	.btext		: { head.o(.text*)
 	                    setup.o(.text*)
 			    fd.o(.text*)
-			    mbr.o(.text*) }		    
+			    mbr.o(.text*) }
 	.bdata		: { head.o(.data)
 	                    setup.o(.data)
 			    fd.o(.data)

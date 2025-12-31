@@ -3,9 +3,7 @@
 #include "pic.h"
 #include "io.h"
 #include "config.h"
-
-extern void printf32(char *fmt, ...);
-
+#include "lib32.h"
 
 #define MOD_PLAIN 0
 #define MOD_SHIFT 1
@@ -61,7 +59,7 @@ void irq1() {
 	putchar32(us_layout[keyb_mod][keyb_data]);
     }
 #ifdef CONFIG_TEST_SCANCODES
-    printf32("0x%x ", keyb_data);
+    printf32("0x%x ", keyb_data,0);
 #endif
     pic_eoi(1);
 }

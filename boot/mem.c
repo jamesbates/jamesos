@@ -13,8 +13,8 @@ void init_mem() {
 
 void print_mem() {
 
-    printf("Base memory available: 0x%X 1K-blocks.\n", basemem);
-    printf("Extended memory available (<16Mb): 0x%X 1K-blocks.\n", extmem);
-    printf("Total memory available (>16Mb): 0x%X 64K-blocks.\n", fullmem);
+    printf("Base memory available: 0x%X 1K-blocks.\n", basemem,0);
+    printf("Extended memory available (<16Mb): 0x%X 1K-blocks.\n", extmem,0);
+    printf("Total memory available (>16Mb): 0x%X 64K-blocks.\n", fullmem,0);
 }
 

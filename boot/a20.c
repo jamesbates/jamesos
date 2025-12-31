@@ -5,7 +5,7 @@ char a20_magic[] = {0x0F,0x1E,0x2D,0x3C};
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 
-void print_4bytes(uint16_t seg, uint16_t offset) {
+void REGPARAM3 print_4bytes(uint16_t seg, uint16_t offset) {
 
     char *base;
     register int c;
@@ -19,9 +19,9 @@ void print_4bytes(uint16_t seg, uint16_t offset) {
         ds(seg);
 	__asm("movb (%1), %0\n" : "=a" (inc) : "S" (&base[c]));
 	ds_cs();
-	printf("0x%x ", inc);
+	printf("0x%x ", inc, 0);
     }
-    printf("\n");
+    puts("\n");
 }
 
 void enable_a20_bios() {

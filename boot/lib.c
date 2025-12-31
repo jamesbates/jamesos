@@ -6,14 +6,16 @@
 #define printf printf32
 #endif
 
-#include <stdarg.h>
-
-void printf(char *f, ...) {
+void
+#ifndef __LIB32__
+REGPARAM3
+#endif
+printf(char *f, uint16_t val1, uint16_t val2) {
 
     static char digits[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
-    va_list va;
+    uint16_t vals[] = {val1, val2};
+    uint8_t nextval = 0;
 
-    va_start(va, f);
     while (*f) {
 
 	if (*f != '%') {
@@ -21,7 +23,7 @@ void printf(char *f, ...) {
 	    putchar(*f);
         } else {
 
-	    int val = va_arg(va, int);
+	    uint16_t val = vals[nextval++];
 	    switch (*++f) {
 
 	        case 'x': putchar(digits[(val >> 4) & 0xF]);
