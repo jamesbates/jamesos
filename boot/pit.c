@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include "io.h"
+#include "tty32.h"
+#include "pic.h"
 
 #define PIT0_DATA_PORT	0x40
 #define PIT1_DATA_PORT	0x41

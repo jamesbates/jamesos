@@ -3,6 +3,7 @@
 #include "config.h"
 #include "pic.h"
 #include "pit.h"
+#include "interrupt.h"
 
 void __attribute__((noreturn)) main32() {
     

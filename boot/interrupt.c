@@ -4,7 +4,7 @@
 #include "pic.h"
 #include "io.h"
 
-extern printf32(char *fmt, ...);
+extern void printf32(char *fmt, ...);
 
 extern void int_divide_zero();
 extern void int_default_isr();
@@ -39,7 +39,7 @@ void default_isr() {
 
 idt_entry_t idt[256] __attribute__((aligned(16)));
 
-static load_idt_entry(idt_entry_t *idt_entry, void *isr) {
+static void load_idt_entry(idt_entry_t *idt_entry, void *isr) {
 
     uint32_t isr_addr = (uint32_t) isr;
 

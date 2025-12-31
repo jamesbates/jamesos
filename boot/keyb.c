@@ -4,7 +4,7 @@
 #include "io.h"
 #include "config.h"
 
-extern printf32(char *fmt, ...);
+extern void printf32(char *fmt, ...);
 
 
 #define MOD_PLAIN 0
